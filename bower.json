@@ -1,0 +1,94 @@
+{
+  "name": "jshmrtn/satellight",
+  "type": "project",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "A Framework for simple sites.",
+  "homepage": "https://github.com/jshmrtn/satellight",
+  "authors": [
+    {
+      "name": "Jeremy Zahner",
+      "email": "zahner@joshmartin.ch"
+    }
+  ],
+  "keywords": [
+    "stack", "capistrano", "gulp", "composer", "deployment"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jshmrtn/satellight.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jshmrtn/satellight/issues"
+  },
+  "support": {
+  },
+  "main": "",
+  "moduleType": [
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "web/node_modules",
+    "web/vendor",
+    "web/assets/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "modernizr": "2.8.2",
+    "bootstrap": "3.3.5",
+    "fontawesome": "~4.4.0",
+    "jquery": "~2.1.3"
+  },
+  "devDependencies": {},
+  "resolutions": {
+    "jquery": ">= 1.9.1"
+  },
+  "overrides": {
+    "modernizr": {
+      "main": "./modernizr.js"
+    },
+    "bootstrap": {
+      "main": [
+        "./js/transition.js",
+        "./js/button.js",
+        "./js/collapse.js",
+        "./less/variables.less",
+        "./less/mixins.less",
+        "./less/normalize.less",
+        "./less/print.less",
+        "./less/glyphicons.less",
+        "./less/scaffolding.less",
+        "./less/type.less",
+        "./less/code.less",
+        "./less/grid.less",
+        "./less/tables.less",
+        "./less/component-animations.less",
+        "./less/jumbotron.less",
+        "./less/forms.less",
+        "./less/buttons.less",
+        "./less/navs.less",
+        "./less/navbar.less",
+        "./less/responsive-embed.less",
+        "./less/utilities.less",
+        "./less/responsive-utilities.less",
+        "./fonts/glyphicons-halflings-regular.eot",
+        "./fonts/glyphicons-halflings-regular.svg",
+        "./fonts/glyphicons-halflings-regular.ttf",
+        "./fonts/glyphicons-halflings-regular.woff",
+        "./fonts/glyphicons-halflings-regular.woff2"
+      ]
+    },
+    "fontawesome": {
+      "main": [
+        "./less/font-awesome.less",
+        "./fonts/fontawesome-webfont.eot",
+        "./fonts/fontawesome-webfont.svg",
+        "./fonts/fontawesome-webfont.ttf",
+        "./fonts/fontawesome-webfont.woff",
+        "./fonts/fontawesome-webfont.woff2"
+      ]
+    }
+  }
+}

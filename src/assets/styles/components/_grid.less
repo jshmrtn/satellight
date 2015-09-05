@@ -1,0 +1,95 @@
+/*  Bootstrap Clearfix */
+
+/* Column clear fix */
+.col-all-reset {
+  .col-sm-1:nth-child(12n+1),
+  .col-sm-2:nth-child(6n+1),
+  .col-sm-3:nth-child(4n+1),
+  .col-sm-4:nth-child(3n+1),
+  .col-sm-6:nth-child(2n+1),
+  .col-md-1:nth-child(12n+1),
+  .col-md-2:nth-child(6n+1),
+  .col-md-3:nth-child(4n+1),
+  .col-md-4:nth-child(3n+1),
+  .col-md-6:nth-child(2n+1),
+  .col-lg-1:nth-child(12n+1),
+  .col-lg-2:nth-child(6n+1),
+  .col-lg-3:nth-child(4n+1),
+  .col-lg-4:nth-child(3n+1),
+  .col-lg-6:nth-child(2n+1),
+  .col-xl-1:nth-child(12n+1),
+  .col-xl-2:nth-child(6n+1),
+  .col-xl-3:nth-child(4n+1),
+  .col-xl-4:nth-child(3n+1),
+  .col-xl-6:nth-child(2n+1),
+  .col-xxl-1:nth-child(12n+1),
+  .col-xxl-2:nth-child(6n+1),
+  .col-xxl-3:nth-child(4n+1),
+  .col-xxl-4:nth-child(3n+1),
+  .col-xxl-6:nth-child(2n+1)
+  {
+    clear: none;
+  }
+}
+
+/*  Tablet Portrait  */
+@media (min-width:@screen-sm-min){
+  .col-all-reset();
+  .col-sm-1:nth-child(12n+1),
+  .col-sm-2:nth-child(6n+1),
+  .col-sm-3:nth-child(4n+1),
+  .col-sm-4:nth-child(3n+1),
+  .col-sm-6:nth-child(2n+1){
+    clear: left;
+  }
+}
+
+
+/*  Tablet Landscape  */
+@media (min-width:@screen-md-min){
+  .col-all-reset();
+  .col-md-1:nth-child(12n+1),
+  .col-md-2:nth-child(6n+1),
+  .col-md-3:nth-child(4n+1),
+  .col-md-4:nth-child(3n+1),
+  .col-md-6:nth-child(2n+1){
+    clear: left;
+  }
+}
+
+
+/*  Desktop  */
+@media (min-width:@screen-lg-min){
+  .col-all-reset();
+  .col-lg-1:nth-child(12n+1),
+  .col-lg-2:nth-child(6n+1),
+  .col-lg-3:nth-child(4n+1),
+  .col-lg-4:nth-child(3n+1),
+  .col-lg-6:nth-child(2n+1){
+    clear: left;
+  }
+}
+
+// /*  Large Desktop  */
+// @media (min-width:@screen-xl-min){
+//   .col-all-reset();
+//   .col-xl-1:nth-child(12n+1),
+//   .col-xl-2:nth-child(6n+1),
+//   .col-xl-3:nth-child(4n+1),
+//   .col-xl-4:nth-child(3n+1),
+//   .col-xl-6:nth-child(2n+1){
+//     clear: left;
+//   }
+// }
+
+//   Xtra Large Desktop  
+// @media (min-width:@screen-xxl-min){
+//   .col-all-reset();
+//   .col-xxl-1:nth-child(12n+1),
+//   .col-xxl-2:nth-child(6n+1),
+//   .col-xxl-3:nth-child(4n+1),
+//   .col-xxl-4:nth-child(3n+1),
+//   .col-xxl-6:nth-child(2n+1){
+//     clear: left;
+//   }
+// }

@@ -1,0 +1,43 @@
+{
+  "name": "jshmrtn/satellight",
+  "type": "project",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "A Framework for simple sites.",
+  "homepage": "https://github.com/jshmrtn/satellight",
+  "authors": [
+    {
+      "name": "Jeremy Zahner",
+      "email": "zahner@joshmartin.ch"
+    }
+  ],
+  "keywords": [
+    "stack", "capistrano", "gulp", "composer", "deployment"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jshmrtn/satellight.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jshmrtn/satellight/issues"
+  },
+  "support": {
+  },
+  "config": {
+  },
+  "autoload": {
+  },
+  "scripts": {
+  },
+  "repositories": [
+  ],
+  "require": {
+    "php": ">=5.3.2",
+    "composer/installers": "v1.0.12",
+    "vlucas/phpdotenv": "1.1.0",
+    "twig/twig": "~1.0",
+    "klein/klein": "~2.1"
+  },
+  "extra": {
+  }
+}

@@ -1,0 +1,306 @@
+# ----------------------------------------------------------------------
+# ALLOW USER BY IP
+# ----------------------------------------------------------------------
+<Limit GET POST>
+order deny,allow
+deny from all
+allow from localhost
+allow from 127.0.0.1
+allow from all
+</Limit>
+
+# ----------------------------------------------------------------------
+# IE Compat-Mode Force OFF
+# ----------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+  Header set X-UA-Compatible "IE=edge,chrome=1"
+  <FilesMatch "\.(appcache|crx|css|eot|gif|htc|ico|jpe?g|js|m4a|m4v|manifest|mp4|oex|oga|ogg|ogv|otf|pdf|png|safariextz|svg|svgz|ttf|vcf|webm|webp|woff|xml|xpi)$">
+    Header unset X-UA-Compatible
+  </FilesMatch>
+</IfModule>
+
+# ----------------------------------------------------------------------
+# CORS-enabled images (@crossorigin)
+# ----------------------------------------------------------------------
+
+<IfModule mod_setenvif.c>
+  <IfModule mod_headers.c>
+    <FilesMatch "\.(gif|ico|jpe?g|png|svg|svgz|webp)$">
+      SetEnvIf Origin ":" IS_CORS
+      Header set Access-Control-Allow-Origin "*" env=IS_CORS
+    </FilesMatch>
+  </IfModule>
+</IfModule>
+
+# ----------------------------------------------------------------------
+# Webfont access
+# ----------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(eot|font.css|otf|ttc|ttf|woff)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>
+
+# ----------------------------------------------------------------------
+# Proper MIME type for all files
+# ----------------------------------------------------------------------
+
+# JavaScript
+AddType application/javascript              .js jsonp
+AddType application/json                    .json
+
+# Audio
+AddType audio/mp4                           .m4a .f4a .f4b
+AddType audio/ogg                           .oga .ogg
+
+# Video
+AddType video/mp4                           .mp4
+AddType video/x-m4v                         .m4v
+AddType audio/mp4                           .m4a
+AddType video/ogg                           .ogv
+AddType audio/ogg                           .ogg .oga
+AddType video/webm                          .webm
+AddType video/x-flv                         .flv
+
+# SVG
+AddType     image/svg+xml                   .svg .svgz
+AddType     image/svg+xml                   svg svgz
+AddType     image/svg+xml                   .svg
+AddEncoding gzip                            .svgz
+
+# Webfonts
+AddType application/vnd.ms-fontobject	      .eot
+AddType application/x-font-opentype  	      .otf
+AddType image/svg+xml                	      .svg
+AddType application/x-font-ttf       	      .ttf
+AddType application/font-woff        	      .woff
+AddType application/font-woff2              .woff2
+
+# Assorted types
+AddType application/octet-stream            .safariextz
+AddType application/x-chrome-extension      .crx
+AddType application/x-opera-extension       .oex
+AddType application/x-shockwave-flash       .swf
+AddType application/x-web-app-manifest+json .webapp
+AddType application/x-xpinstall             .xpi
+AddType application/xml                     .rss .atom .xml .rdf
+AddType image/webp                          .webp
+AddType image/x-icon                        .ico
+AddType text/cache-manifest                 .appcache .manifest
+AddType text/vtt                            .vtt
+AddType text/x-component                    .htc
+AddType text/x-vcard                        .vcf
+
+
+# ----------------------------------------------------------------------
+# Gzip compression
+# ----------------------------------------------------------------------
+
+<IfModule mod_deflate.c>
+
+  <IfModule mod_setenvif.c>
+    <IfModule mod_headers.c>
+      SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+      RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+    </IfModule>
+  </IfModule>
+
+  <IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE application/atom+xml \
+                                  application/javascript \
+                                  application/json \
+                                  application/rss+xml \
+                                  application/vnd.ms-fontobject \
+                                  application/x-font-ttf \
+                                  application/xhtml+xml \
+                                  application/xml \
+                                  font/opentype \
+                                  image/svg+xml \
+                                  image/x-icon \
+                                  text/css \
+                                  text/html \
+                                  text/plain \
+                                  text/x-component \
+                                  text/xml
+  </IfModule>
+
+</IfModule>
+
+
+# ----------------------------------------------------------------------
+# Expires headers (for better cache control)
+# ----------------------------------------------------------------------
+
+# These are pretty far-future expires headers.
+# They assume you control versioning with filename-based cache busting
+# Additionally, consider that outdated proxies may miscache
+#   www.stevesouders.com/blog/2008/08/23/revving-filenames-dont-use-querystring/
+
+# If you don't use filenames to version, lower the CSS and JS to something like
+# "access plus 1 week".
+
+<IfModule mod_expires.c>
+  ExpiresActive on
+
+# Perhaps better to whitelist expires rules? Perhaps.
+  ExpiresDefault                          "access plus 1 month"
+
+# cache.appcache needs re-requests in FF 3.6 (thanks Remy ~Introducing HTML5)
+  ExpiresByType text/cache-manifest       "access plus 0 seconds"
+
+# Your document html
+  ExpiresByType text/html                 "access plus 0 seconds"
+
+# Data
+  ExpiresByType application/json          "access plus 0 seconds"
+  ExpiresByType application/xml           "access plus 0 seconds"
+  ExpiresByType text/xml                  "access plus 0 seconds"
+
+# Feed
+  ExpiresByType application/atom+xml      "access plus 1 hour"
+  ExpiresByType application/rss+xml       "access plus 1 hour"
+
+# Favicon (cannot be renamed)
+  ExpiresByType image/x-icon              "access plus 1 week"
+
+# Media: images, video, audio
+  ExpiresByType audio/ogg                 "access plus 1 month"
+  ExpiresByType image/gif                 "access plus 1 month"
+  ExpiresByType image/jpeg                "access plus 1 month"
+  ExpiresByType image/svg                 "access plus 1 month"
+  ExpiresByType image/png                 "access plus 1 month"
+  ExpiresByType video/mp4                 "access plus 1 month"
+  ExpiresByType video/ogg                 "access plus 1 month"
+  ExpiresByType video/webm                "access plus 1 month"
+
+# HTC files  (css3pie)
+  ExpiresByType text/x-component          "access plus 1 month"
+
+# Webfonts
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+  ExpiresByType application/x-font-ttf    "access plus 1 month"
+  ExpiresByType application/x-font-woff   "access plus 1 month"
+  ExpiresByType application/font-woff2    "access plus 1 month"
+  ExpiresByType font/opentype             "access plus 1 month"
+  ExpiresByType image/svg+xml             "access plus 1 month"
+
+# CSS and JavaScript
+  ExpiresByType application/javascript    "access plus 1 year"
+  ExpiresByType text/css                  "access plus 1 year"
+
+</IfModule>
+
+<ifModule mod_headers.c>
+
+  # Turn on Expires and set default expires to 3 days
+
+  ExpiresActive On
+  ExpiresDefault A259200
+
+  # Set up caching on media files for 1 month
+  <filesMatch ".(ico|gif|jpg|jpeg|png|flv|pdf|swf|mov|mp3|wmv|ppt)$">
+    ExpiresDefault A2419200
+    Header append Cache-Control "public"
+  </filesMatch>
+
+  # Set up 2 Hour caching on commonly updated files
+  <filesMatch ".(xml|txt|html|js|css)$">
+    ExpiresDefault A7200
+    Header append Cache-Control "private, must-revalidate"
+  </filesMatch>
+
+  # Force no caching for dynamic files
+  <filesMatch ".(php|cgi|pl|htm|phtml)$">
+    ExpiresDefault A0
+    Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+  </filesMatch>
+
+</ifModule>
+
+
+# ----------------------------------------------------------------------
+# ETag removal
+# ----------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+  Header unset ETag
+</IfModule>
+
+FileETag None
+
+# ----------------------------------------------------------------------
+# KeepAlive
+# ----------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+  Header set Connection keep-alive
+</IfModule>
+
+# ----------------------------------------------------------------------
+# UTF-8 encoding
+# ----------------------------------------------------------------------
+
+AddDefaultCharset utf-8
+AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
+
+
+# ----------------------------------------------------------------------
+# A little more security
+# ----------------------------------------------------------------------
+
+# "-Indexes" will have Apache block users from browsing folders without a
+# default document Usually you should leave this activated, because you
+# shouldn't allow everybody to surf through every folder on your server (which
+# includes rather private places like CMS system folders).
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
+
+# Block access to "hidden" directories or files whose names begin with a
+# period. This includes directories used by version control systems such as
+# Subversion or Git.
+<IfModule mod_rewrite.c>
+  RewriteCond %{SCRIPT_FILENAME} -d [OR]
+  RewriteCond %{SCRIPT_FILENAME} -f
+  RewriteRule "(^|/)\." - [F]
+</IfModule>
+
+# Block access to backup and source files. These files may be left by some
+# text/html editors and pose a great security danger, when anyone can access
+# them.
+<FilesMatch "(\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|swp)|~)$">
+  Order allow,deny
+  Deny from all
+  Satisfy All
+</FilesMatch>
+
+# Increase cookie security
+<IfModule mod_php5.c>
+  php_value session.cookie_httponly true
+</IfModule>
+
+# Increase security
+<IfModule mod_headers.c>
+  Header set Strict-Transport-Security "max-age=2592000" env=HTTPS
+</IfModule>
+<ifModule mod_headers.c>
+  Header set X-XSS-Protection "1; mode=block"
+  Header always append X-Frame-Options SAMEORIGIN
+  Header set X-Content-Type-Options: "nosniff”
+</ifModule>
+
+# ----------------------------------------------------------------------
+# REWRITE SETTINGS
+# ----------------------------------------------------------------------
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
