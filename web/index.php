@@ -12,14 +12,14 @@ $twig = new Twig_Environment($loader, array());
 $template_vars = array('APP_ENV' => APP_ENV);
 
 $klein->respond(function ($request, $response, $service) use ($klein) {
-    // Handle exceptions => flash the message and redirect to the referrer
-    $klein->onError(function ($klein) {
-        $klein->response()->code(400);
-        $klein->response()->send();
-    });
+// Handle exceptions => flash the message and redirect to the referrer
+	$klein->onError(function ($klein) {
+		$klein->response()->code(400);
+		$klein->response()->send();
+	});
 });
 
-if(APP_ENV == 'development') {
+if (APP_ENV == 'development') {
 
 	$klein->respond('GET', '/', function ($request) {
 
@@ -40,7 +40,4 @@ if(APP_ENV == 'development') {
 
 }
 
-
 $klein->dispatch();
-
-?>
