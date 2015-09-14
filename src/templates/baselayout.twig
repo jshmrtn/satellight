@@ -8,7 +8,7 @@
 
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
       <meta name="HandheldFriendly" content="True">
       <meta name="MobileOptimized" content="320">
@@ -23,9 +23,22 @@
 
       {% block pageinfo %}
 
-        <title>Page Title</title>
+        <title>Sattellight</title>
 
-        <meta name="description" content="Page Description">
+        <meta name="description" content="This is the Sattellight baselayout description.">
+
+        <meta property="og:url"                content="" />
+        <meta property="og:type"               content="" />
+        <meta property="og:locale"             content="" />
+        <meta property="og:title"              content="" />
+        <meta property="og:description"        content="" />
+        <meta property="og:image"              content="" />
+        <meta property="og:image:url"          content="" />
+        <meta property="og:image:secure_url"   content="" />
+        <meta property="og:image:type"         content="" />
+        <meta property="og:image:width"        content="" />
+        <meta property="og:image:height"       content="" />
+        <meta property="fb:app_id"             content="" />
 
       {% endblock pageinfo %}
 
@@ -73,14 +86,6 @@
 {% block scripts %}
 
   <script src="assets/scripts/{{ js_file|default('main.js') }}"></script>
-
-  {% if APP_ENV == 'development' %}
-
-    <script type='text/javascript' id="__bs_script__">//<![CDATA[
-        document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.8.2.js'><\/script>".replace("HOST", location.hostname));
-    //]]></script>
-
-  {% endif %}
 
 {% endblock scripts %}
 

@@ -6,11 +6,6 @@ set :repo_url, ENV['APP_REPO']
 # This could be overridden in a stage config file
 set :branch, :master
 
-set :deploytag_time_format, "%Y.%m.%d-%H%M%S-cet"
-
-set :deploy_to, -> { "/var/www/#{fetch :application}_#{fetch :stage}" }
-set :shared_path, "#{deploy_to}/shared"
-
 # Use :debug for more verbose output when troubleshooting
 set :log_level, :info
 
@@ -21,9 +16,6 @@ set :deploytag_time_format, "%Y.%m.%d-%H%M%S-cet"
 # it needs to be added to linked_files so it persists across deploys:
 # set :linked_files, fetch(:linked_files, []).push('.env', 'web/.htaccess')
 set :linked_files, fetch(:linked_files, []).push('.env')
-
-# Install Composer executable
-SSHKit.config.command_map[:composer] = "php #{fetch(:shared_path)}/composer.phar"
 
 namespace :assets do
 

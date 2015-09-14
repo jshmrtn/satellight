@@ -1,4 +1,4 @@
-var JM = {
+var SATTELLIGHT = {
   // All pages
   common: {
     init: function() {
@@ -64,7 +64,7 @@ var JM = {
 
 var UTIL = {
   fire: function(func, funcname, args) {
-    var namespace = JM;
+    var namespace = SATTELLIGHT;
     funcname = (funcname === undefined) ? 'init' : funcname;
     if (func !== '' && namespace[func] && typeof namespace[func][funcname] === 'function') {
       namespace[func][funcname](args);

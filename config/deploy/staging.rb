@@ -4,6 +4,12 @@ set :branch, :master
 set :user, ENV['STAGING_USER']
 set :host, ENV['STAGING_HOST']
 
+set :deploy_to, ENV['STAGING_PATH']
+set :shared_path, "#{deploy_to}/shared"
+
+# Install Composer executable
+SSHKit.config.command_map[:composer] = "php #{fetch(:shared_path)}/composer.phar"
+
 # Simple Role Syntax
 # ==================
 #role :app, %w{deploy@example.com}
