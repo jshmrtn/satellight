@@ -1,5 +1,5 @@
-# Sattellight
-[![Build Status](https://travis-ci.org/jshmrtn/sattellight.svg)](https://travis-ci.org/jshmrtn/sattellight)
+# Satellight
+[![Build Status](https://travis-ci.org/jshmrtn/satellight.svg)](https://travis-ci.org/jshmrtn/satellight)
 
 This framework includes easy setup, building and deployment for simple, non database reliant projects.
 
@@ -16,7 +16,7 @@ This framework includes easy setup, building and deployment for simple, non data
 
 ## Installation
 
-1. Clone the git repo - `git clone git@github.com:jshmrtn/sattellight.git`
+1. Clone the git repo - `git clone git@github.com:jshmrtn/satellight.git`
 2. Run `composer install`
 3. Run `npm install`
 4. Run `bower install`
@@ -25,7 +25,7 @@ This framework includes easy setup, building and deployment for simple, non data
   * `APP_ENV` - Set to environment (`development`, `staging`, `production`)
   * `APP_URL` - URL to application home (example.com)
   * `APP_NAME` - The application name - this will be used as a identifier for i.e. handling deployments (example-site)
-  * `APP_REPO` - The applications git repo (git@github.com/jshmrtn/sattellight)
+  * `APP_REPO` - The applications git repo (git@github.com/jshmrtn/satellight)
   * `*_URL` - URL to application home (example.com)
   * `*_HOST` - The host used to connect via ssh when deploying (server.example.com)
   * `*_USER` - The user used to connect via ssh when deploying (www-data)
