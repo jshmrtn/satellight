@@ -56,4 +56,8 @@ Contributions are welcome from everyone. We will add [contributing guidelines](C
 
 ## Credits
 
-This project started as a fork of the faboulus [roots/bedrock](https://github.com/roots/bedrock).
+This project relies on various tools / frameworks:
+* Router: Klein.php - https://github.com/chriso/klein.php
+* ENV Variables: PHPDotenv - https://github.com/vlucas/phpdotenv
+* Templating: Twig - https://github.com/twigphp/Twig
+* Deployment: Capistrano - https://github.com/capistrano/capistrano
