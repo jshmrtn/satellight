@@ -1,5 +1,9 @@
 # Satellight
-[![Build Status](https://travis-ci.org/jshmrtn/satellight.svg)](https://travis-ci.org/jshmrtn/satellight)
+[![Build Status](https://travis-ci.org/jshmrtn/satellight.svg)](https://travis-ci.org/jshmrtn/satellight) (PHP)
+[![Dependency Status](https://www.versioneye.com/user/projects/561b7c2ea193340f32001204/badge.svg?style=flat)](https://www.versioneye.com/user/projects/561b7c2ea193340f32001204) (Bower)
+[![Dependency Status](https://www.versioneye.com/user/projects/561b7c2fa193340f2f001417/badge.svg?style=flat)](https://www.versioneye.com/user/projects/561b7c2fa193340f2f001417) (Rubygems)
+[![Dependency Status](https://www.versioneye.com/user/projects/561b7c2fa193340f28001303/badge.svg?style=flat)](https://www.versioneye.com/user/projects/561b7c2fa193340f28001303) (Composer)
+[![Dependency Status](https://www.versioneye.com/user/projects/561b7c30a193340f3200120e/badge.svg?style=flat)](https://www.versioneye.com/user/projects/561b7c30a193340f3200120e) (NPM)
 
 This framework includes easy setup, building and deployment for simple, non database reliant projects.
 
