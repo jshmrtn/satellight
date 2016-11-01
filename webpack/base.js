@@ -61,10 +61,6 @@ module.exports = {
                 loader: 'file?prefix=font/',
             },
             {
-                test: /\.html$/,
-                loader: 'ngtemplate?relativeTo=' + srcPath + '/!html?interpolate',
-            },
-            {
                 test: /\.json$/,
                 loader: 'json',
             },
