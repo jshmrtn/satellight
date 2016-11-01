@@ -37,15 +37,6 @@ module.exports = {
                 },
             },
             {
-                test: /angular-hal[\/\\].*\.js$/,
-                loader: 'babel',
-                query: {
-                    presets: [
-                        'es2015',
-                    ],
-                },
-            },
-            {
                 test: /\.css/,
                 loader: 'style!css?sourceMap!postcss',
             },
