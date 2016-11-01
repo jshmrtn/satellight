@@ -27,9 +27,6 @@
     "comma-dangle": [
       "error",
       "always-multiline"
-    ],
-    "promise/catch-or-return": [
-      "error"
     ]
   },
   "globals": {
