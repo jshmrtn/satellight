@@ -9,13 +9,4 @@ module.exports = {
     watch: true,
     publicPath: '/',
     contentBase: CONTENT_BASE,
-    historyApiFallback: {
-        index: '/index.html',
-        rewrites: [
-            {
-                from: /^\/auth\/saml\/.*/,
-                to: () => '/index.html',
-            },
-        ],
-    },
 };

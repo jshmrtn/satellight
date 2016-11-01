@@ -64,14 +64,6 @@ module.exports = {
                 test: /\.json$/,
                 loader: 'json',
             },
-            {
-                test: /jquery\.js$/,
-                loader: 'expose?$',
-            },
-            {
-                test: /jquery\.js$/,
-                loader: 'expose?jQuery',
-            },
         ],
     },
     plugins: [
