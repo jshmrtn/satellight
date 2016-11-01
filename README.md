@@ -1,6 +1,6 @@
 # Satellight
 
-**This project is managed on our internat Gitlab instance [git.joshmartin.ch](https://git.joshmartin.ch/jshmrtn/satellight)**
+**This project is managed on our internal GitLab instance: [git.joshmartin.ch](https://git.joshmartin.ch/jshmrtn/satellight)**
 
 [![build status](https://git.joshmartin.ch/jshmrtn/satellight/badges/master/build.svg)](https://git.joshmartin.ch/jshmrtn/satelight/commits/master)
 
@@ -8,7 +8,7 @@
 
 ### Roadmap
 
-* Add templating more extensive templating via webpack-html-plugin.
+* Add more extensive templating via webpack-html-plugin.
 
 ### Requirements
 
