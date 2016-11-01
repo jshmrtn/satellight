@@ -36,8 +36,5 @@
     "global": false,
     "console": false,
     "wp": false
-  },
-  "plugins": [
-    "promise"
-  ]
+  }
 }
