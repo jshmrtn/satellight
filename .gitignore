@@ -1,28 +1,8 @@
-# Dotenv
-.env
-.env.*
-!.env.example
-
-# Vendor (e.g. Composer)
-vendor/*
-!vendor/.gitkeep
-
 # Node Package Manager
 node_modules
 
-# Bower
-src/bower/*
-!src/bower/.gitkeep
-
-# Vagrant
-bin
-.vagrant
-
-# Assets
-web/assets/*
-!web/assets/.gitkeep
-web/pages/*
-!web/pages/.gitkeep
+# Dist
+dist/
 
 # Numerous always-ignore extensions
 *.diff

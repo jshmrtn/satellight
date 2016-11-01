@@ -1,0 +1,10 @@
+@import "common/variables";
+
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+@import "~bootstrap/scss/bootstrap-flex";
+
+@import "common/global";
+@import "components/buttons";
+@import "components/grid";
+@import "layouts/header";
+@import "layouts/footer";

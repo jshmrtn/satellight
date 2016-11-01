@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+'use strict';
+
+/* jshint node: true */
+/* eslint-env node */
+
+const WebpackDevServer = require('webpack-dev-server');
+const webpack = require('webpack');
+
+const compiler = webpack(require('../webpack/server'));
+const server = new WebpackDevServer(compiler, require('../webpack/server.conf'));
+
+server.listen(3100, 'localhost');

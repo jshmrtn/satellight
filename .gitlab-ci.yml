@@ -1,0 +1,51 @@
+cache:
+  paths:
+    - node_modules/
+
+stages:
+  - install
+  - test
+  - prepare
+  - build
+
+satellight:install:
+  tags:
+    - docker
+  image: node:6.5
+  stage: 'install'
+  script:
+    - npm install --unsafe-perm
+    - npm prune
+  artifacts:
+    paths:
+      - node_modules
+    expire_in: 30min
+
+satellight:test:
+  tags:
+    - docker
+  image: node:6.5
+  stage: 'test'
+  script:
+    - npm test
+  dependencies:
+    - satellight:install
+
+satellight:build:
+  only:
+    - /^master$/
+    - /^develop$/
+  tags:
+    - docker
+  stage: build
+  image: node:6.5
+  script:
+    - npm run build:prod
+  dependencies:
+    - satellight:install
+  artifacts:
+    paths:
+      - dist
+  only:
+    - /^master$/
+    - /^develop$/

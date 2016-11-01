@@ -1,10 +1,10 @@
 {
-  "name": "jshmrtn/satellight",
+  "name": "satellight",
   "type": "project",
   "license": "MIT",
-  "version": "1.0.0",
-  "description": "A Framework for simple sites.",
-  "homepage": "https://github.com/jshmrtn/satellight",
+  "version": "2.0.0",
+  "description": "A Framework for simple projects.",
+  "homepage": "https://github.com/jshmrtn/satelight",
   "authors": [
     {
       "name": "Jeremy Zahner",
@@ -12,60 +12,73 @@
     }
   ],
   "keywords": [
-    "stack", "capistrano", "gulp", "composer", "deployment"
+    "webpack"
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:jshmrtn/satellight.git"
+    "url": "git@github.com:jshmrtn/satelight.git"
   },
   "bugs": {
-    "url": "https://github.com/jshmrtn/satellight/issues"
+    "url": "https://github.com/jshmrtn/satelight/issues"
   },
   "scripts": {
-    "postinstall": "bower install && gulp build --production",
-    "build": "bower install && gulp --production",
-    "jshint": "gulp jshint",
-    "jscs": "jscs gulpfile.js src/assets/js/*.js"
+    "test": "npm run eslint && npm run jshint",
+    "start": "npm run webpack:server",
+    "watch": "npm run webpack:watch",
+    "build:dev": "npm run webpack:dev",
+    "build:prod": "npm run webpack:prod",
+    "webpack:dev": "./node_modules/.bin/webpack --config webpack/dev.js",
+    "webpack:prod": "./node_modules/.bin/webpack --config webpack/prod.js --optimize-minimize --optimize-dedupe",
+    "webpack:watch": "./node_modules/.bin/webpack --watch --config webpack/dev.js",
+    "webpack:server": "OUTPUT_PATH='http://localhost:3000/' ./bin/dev-server",
+    "eslint": "./node_modules/.bin/eslint .",
+    "jshint": "./node_modules/.bin/jshint .",
+    "clean": "rm -rf ./dist"
   },
   "engines": {
-    "node": ">= 0.10.2",
-    "npm": ">=2.1.5"
+    "node": ">= 6.5"
   },
   "dependencies": {
-    "asset-builder": "^1.0.2",
-    "bower": "^1.4.0",
-    "browser-sync": "^2.7.1",
-    "del": "^2.0.0",
-    "fs": "0.0.2",
-    "gulp": "^3.8.11",
-    "gulp-autoprefixer": "^3.0.0",
-    "gulp-changed": "^1.2.1",
-    "gulp-concat": "^2.5.2",
-    "gulp-data": "^1.2.0",
-    "gulp-flatten": "^0.2.0",
-    "gulp-if": "^2.0.0",
-    "gulp-imagemin": "^2.2.1",
-    "gulp-jshint": "^1.9.4",
-    "gulp-less": "^3.0.2",
-    "gulp-minify-css": "^1.0.0",
-    "gulp-plumber": "^1.0.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-rev": "^6.0.1",
-    "gulp-sass": "^2.0.0",
-    "gulp-sourcemaps": "^1.5.1",
-    "gulp-twig": "^0.4.0",
-    "gulp-uglify": "^1.1.0",
-    "imagemin-pngcrush": "^4.0.0",
-    "jshint-stylish": "^2.0.0",
-    "lazypipe": "^1.0.0",
-    "merge-stream": "^1.0.0",
-    "minimist": "^1.1.1",
-    "rename": "^1.0.3",
-    "run-sequence": "^1.0.2",
-    "traverse": "^0.6.6",
-    "wiredep": "^2.2.2"
+    "bootstrap": "^4.0.0-alpha.5",
+    "jquery": "^3.1.0"
   },
   "devDependencies": {
-    "gulp-debug": "^2.1.0"
+    "autoprefixer": "^6.3.6",
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-polyfill": "^6.9.1",
+    "babel-preset-es2015": "^6.9.0",
+    "browser-sync": "^2.13.0",
+    "browser-sync-webpack-plugin": "^1.0.3",
+    "chalk": "^1.1.3",
+    "css-loader": "^0.25.0",
+    "del": "^2.2.1",
+    "eslint": "^3.9.1",
+    "eslint-plugin-promise": "^3.3.0",
+    "expose-loader": "^0.7.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "html-loader": "^0.4.3",
+    "html-webpack-plugin": "^2.21.0",
+    "http-proxy-middleware": "^0.17.2",
+    "install": "^0.8.1",
+    "jshint": "^2.9.2",
+    "jshint-loader": "^0.8.3",
+    "json-loader": "^0.5.4",
+    "less": "^2.7.1",
+    "less-loader": "^2.2.3",
+    "lodash": "^4.13.1",
+    "merge-stream": "^1.0.0",
+    "minimist": "^1.2.0",
+    "ngtemplate-loader": "^1.3.1",
+    "node-sass": "^3.8.0",
+    "null-loader": "^0.1.1",
+    "postcss-loader": "^1.1.0",
+    "run-sequence": "^1.2.1",
+    "sass-loader": "^4.0.2",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "1.16.2"
   }
 }
