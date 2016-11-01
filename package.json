@@ -22,7 +22,7 @@
     "url": "https://github.com/jshmrtn/satelight/issues"
   },
   "scripts": {
-    "test": "npm run eslint && npm run jshint",
+    "test": "npm run eslint",
     "start": "npm run webpack:server",
     "watch": "npm run webpack:watch",
     "build:dev": "npm run webpack:dev",
@@ -32,7 +32,6 @@
     "webpack:watch": "./node_modules/.bin/webpack --watch --config webpack/dev.js",
     "webpack:server": "OUTPUT_PATH='http://localhost:3000/' ./bin/dev-server",
     "eslint": "./node_modules/.bin/eslint .",
-    "jshint": "./node_modules/.bin/jshint .",
     "clean": "rm -rf ./dist"
   },
   "engines": {
@@ -57,7 +56,6 @@
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.21.0",
     "http-proxy-middleware": "^0.17.2",
-    "jshint": "^2.9.2",
     "json-loader": "^0.5.4",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
