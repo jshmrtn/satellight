@@ -4,11 +4,15 @@
   "license": "MIT",
   "version": "2.0.0",
   "description": "A Framework for simple projects.",
-  "homepage": "https://github.com/jshmrtn/satelight",
+  "homepage": "https://github.com/jshmrtn/satellight",
   "authors": [
     {
       "name": "Jeremy Zahner",
       "email": "zahner@joshmartin.ch"
+    },
+    {
+      "name": "Jonatan Männchen",
+      "email": "maennchen@joshmartin.ch"
     }
   ],
   "keywords": [
@@ -16,10 +20,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:jshmrtn/satelight.git"
+    "url": "git@github.com:jshmrtn/satellight.git"
   },
   "bugs": {
-    "url": "https://github.com/jshmrtn/satelight/issues"
+    "url": "https://github.com/jshmrtn/satellight/issues"
   },
   "scripts": {
     "test": "npm run eslint",
