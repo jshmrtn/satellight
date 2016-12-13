@@ -11,7 +11,7 @@ stages:
 satellight:install:
   tags:
     - docker
-  image: node:6.5
+  image: node:7
   stage: 'install'
   script:
     - npm install --unsafe-perm
@@ -24,7 +24,7 @@ satellight:install:
 satellight:test:
   tags:
     - docker
-  image: node:6.5
+  image: node:7
   stage: 'test'
   script:
     - npm test
@@ -38,7 +38,7 @@ satellight:build:
   tags:
     - docker
   stage: build
-  image: node:6.5
+  image: node:7
   script:
     - npm run build:prod
   dependencies:
