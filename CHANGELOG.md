@@ -1,6 +1,6 @@
 # Changelog
 
-## NEXT
+## 2.1.0: Yarn & Node V7
 
 * Added YARN lockfile for faster node modules handling
 * Updated dependencies
