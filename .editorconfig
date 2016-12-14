@@ -15,3 +15,6 @@ indent_size = 4
 
 [*.ejs]
 indent_size = 4
+
+[*.njk]
+indent_size = 4
