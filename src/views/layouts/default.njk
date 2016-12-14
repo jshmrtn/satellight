@@ -55,9 +55,18 @@
 
     </script>
 
+    {# Add any other template-specific HEAD tags by extending the head block #}
+    {% block head %}{% endblock %}
+
   </head>
 
   <body>
+
+        {# The Intro block appears above flash messages (used for temporary information display) #}
+        {% block intro %}{% endblock %}
+
+        {# The content block should contain the body of your template"s content #}
+        {% block content %}{% endblock %}
 
   </body>
 

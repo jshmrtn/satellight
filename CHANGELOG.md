@@ -1,5 +1,9 @@
 # Changelog
 
+## NEXT
+
+* Adds Nunjucks for templating
+
 ## 2.1.0: Yarn & Node V7
 
 * Added YARN lockfile for faster node modules handling

@@ -64,11 +64,21 @@ module.exports = {
                 test: /\.json$/,
                 loader: 'json',
             },
+            {
+                test: /\.(njk|nunjucks)$/,
+                loader: 'nunjucks-html?' +
+                JSON.stringify({
+                    'searchPaths': [
+                        'src/views',
+                        'src/views/layouts',
+                    ],
+                }),
+            },
         ],
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'html?interpolate!./src/views/index.ejs',
+            template: 'html?interpolate!nunjucks-html!./src/views/index.njk',
         }),
         new ExtractTextPlugin('[hash].css'),
     ],
