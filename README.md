@@ -12,7 +12,7 @@
 
 ### Requirements
 
-* Node >= 6.5
+* Node >= 7
 
 ### Installation
 
