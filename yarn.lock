@@ -3484,9 +3484,9 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
 
-"nunjucks-html-loader@git+https://github.com/jshmrtn/nunjucks-html-loader.git":
+nunjucks-html-loader@^1.1.0:
   version "1.1.0"
-  resolved "git+https://github.com/jshmrtn/nunjucks-html-loader.git#a4431184d77e65f2504c59c4580b5851d290b9d7"
+  resolved "https://registry.npmjs.org/nunjucks-html-loader/-/nunjucks-html-loader-1.1.0.tgz#84f5a64df2bef1d55fe3e1139e99b243ae1c0ef1"
   dependencies:
     loader-utils "^0.2.16"
     nunjucks "^3.0.0"
