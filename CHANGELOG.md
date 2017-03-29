@@ -1,8 +1,12 @@
 # Changelog
 
-## NEXT
+## 2.2.0
 
 * Adds Nunjucks for templating
+* Updates dependencies
+* Updates Webpack to Version 2
+* Adds Modernizr
+* Adds Babel Polyfills
 
 ## 2.1.0: Yarn & Node V7
 
