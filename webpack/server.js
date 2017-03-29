@@ -9,18 +9,20 @@ const HOSTNAME = 'localhost';
 // Url where the webpack server is running
 const APP_URL = 'http://' + HOSTNAME + ':3100';
 
-let baseConfig = require('./dev'),
+const
+    baseConfig = require('./dev'),
     BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
     webpack = require('webpack'),
-    browserSync;
+    DashboardPlugin = require('webpack-dashboard/plugin');
 
-baseConfig.entry = [
-    baseConfig.entry,
+baseConfig.entry.main = baseConfig.entry.main.concat([
     'webpack-dev-server/client?http://localhost:3100/',
     'webpack/hot/dev-server',
-];
+]);
 
-browserSync = new BrowserSyncPlugin(
+baseConfig.output.filename = '[name].[hash].js';
+
+const browserSync = new BrowserSyncPlugin(
     {
         proxy: {
             target: APP_URL,
@@ -34,7 +36,8 @@ browserSync = new BrowserSyncPlugin(
 
 // Add Browsersync
 baseConfig.plugins.push(browserSync);
-
+baseConfig.plugins.push(new DashboardPlugin());
 baseConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+baseConfig.plugins.push(new webpack.NamedModulesPlugin());
 
 module.exports = baseConfig;

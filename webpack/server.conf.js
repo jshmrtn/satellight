@@ -6,7 +6,11 @@ const CONTENT_BASE = 'dist/';
 module.exports = {
     hot: true,
     inline: true,
-    watch: true,
+    historyApiFallback: true,
     publicPath: '/',
     contentBase: CONTENT_BASE,
+    watchOptions: {
+        aggregateTimeout: 100,
+        poll: 100,
+    },
 };

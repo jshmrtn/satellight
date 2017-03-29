@@ -12,9 +12,22 @@ let path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-    noInfo: true,
     context: rootPath,
-    entry: path.join(srcPath, 'scripts/main.js'),
+    entry: {
+        main: [
+            path.join(srcPath, 'scripts/main.js'),
+            require.resolve('babel-polyfill'),
+            'modernizr',
+        ],
+    },
+    resolve: {
+        alias: {
+            src: srcPath,
+            modernizr$: path.resolve(rootPath, '.modernizrrc.json'),
+            sinon$: 'sinon/pkg/sinon',
+        },
+    },
+    devtool: 'source-map',
     output: {
         path: distPath,
         publicPath: '/',
@@ -25,70 +38,204 @@ module.exports = {
     },
     recordsOutputPath: path.join(distPath, '/records.json'),
     module: {
-        loaders: [
+        rules: [
             {
-                test: /\.jsx?$/,
+                test: /\.modernizrrc\.json$/,
+                use: [
+                    { loader: 'modernizr-loader' },
+                    { loader: 'json-loader' },
+                ],
+            },
+            {
+                test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel',
-                query: {
-                    presets: [
-                        'es2015',
-                    ],
-                },
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            env: {
+                                test: {
+                                    plugins: [
+                                        'istanbul',
+                                    ],
+                                },
+                            },
+                            presets: [
+                                [ 'es2015', { modules: false }],
+                                'es2016',
+                                'es2017',
+                            ],
+                            plugins: [
+                                'transform-runtime',
+                                'transform-es2015-destructuring',
+                                'transform-object-rest-spread',
+                                'syntax-dynamic-import',
+                            ],
+                        },
+                    },
+                ],
             },
             {
                 test: /\.css/,
-                loader: 'style!css?sourceMap!postcss',
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    publicPath: '/',
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true,
+                            },
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: function () {
+                                    return [
+                                        autoprefixer({
+                                            browsers: [
+                                                'last 10 versions',
+                                            ],
+                                        }),
+                                    ];
+                                },
+                            },
+                        },
+                    ],
+                }),
             },
             {
                 test: /\.less$/,
-                loader: 'style!css?sourceMap!postcss!less?sourceMap',
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    publicPath: '/',
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true,
+                            },
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: function () {
+                                    return [
+                                        autoprefixer({
+                                            browsers: [
+                                                'last 10 versions',
+                                            ],
+                                        }),
+                                    ];
+                                },
+                            },
+                        },
+                        {
+                            loader: 'less-loader',
+                            options: {
+                                sourceMap: true,
+                                globalVars: {
+                                    'style-path': './src/styles',
+                                },
+                            },
+                        },
+                    ],
+                }),
             },
             {
-                test: /\.(sass|scss)$/,
-                loader: 'style!css?sourceMap!postcss!sass?sourceMap',
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    publicPath: '/',
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                sourceMap: true,
+                            },
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                plugins: function () {
+                                    return [
+                                        autoprefixer({
+                                            browsers: [
+                                                'last 10 versions',
+                                            ],
+                                        }),
+                                    ];
+                                },
+                            },
+                        },
+                        {
+                            loader: 'sass-loader',
+                            options: {
+                                sourceMap: true,
+                                globalVars: {
+                                    'style-path': './src/styles',
+                                },
+                            },
+                        },
+                    ],
+                }),
             },
             {
                 test: /\.(jpe?g|gif|png|ico)$/,
-                loader: 'url?prefix=img/&limit=5000',
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            prefix: 'img/',
+                            limit: 5000,
+                        },
+                    },
+                ],
             },
             {
-                test: /\.woff2?$/,
-                loader: 'url?prefix=font/&limit=5000',
+                test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            prefix: 'font/',
+                            limit: 5000,
+                            mimetype: 'application/font-woff',
+                        },
+                    },
+                ],
             },
             {
-                test: /\.(eot|ttf|svg)$/,
-                loader: 'file?prefix=font/',
-            },
-            {
-                test: /\.json$/,
-                loader: 'json',
+                test: /\.(ttf|eot|svg)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    },
+                ],
+                exclude: [
+                    path.join(srcPath, 'icons'),
+                ],
             },
             {
                 test: /\.(njk|nunjucks)$/,
-                loader: 'nunjucks-html?' +
-                JSON.stringify({
-                    'searchPaths': [
-                        'src/views',
-                        'src/views/layouts',
-                    ],
-                }),
+                use: [
+                    {
+                        loader: 'nunjucks-html-loader',
+                        options: {
+                            'searchPaths': [
+                                'src/views',
+                                'src/views/layouts',
+                            ],
+                        },
+                    },
+                ],
             },
         ],
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'html?interpolate!nunjucks-html!./src/views/index.njk',
+            inject: 'body',
+            template: 'html-loader?interpolate!nunjucks-html-loader!' + path.resolve(srcPath, 'views/index.njk'),
         }),
-        new ExtractTextPlugin('[hash].css'),
     ],
-    postcss: function() {
-        return [
-            autoprefixer({
-                browsers: [
-                    'last 10 versions',
-                ],
-            }),
-        ];
-    },
 };
