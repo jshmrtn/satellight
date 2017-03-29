@@ -2,25 +2,34 @@
 /* eslint-env node */
 
 'use strict';
-
-var baseConfig = require('./base'),
+const
+    baseConfig = require('./base'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    webpack = require('webpack');
+    webpack = require('webpack'),
+    WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 
-baseConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
+baseConfig.plugins.push(new webpack.LoaderOptionsPlugin({
     minimize: true,
 }));
+baseConfig.plugins.push(new WebpackCleanupPlugin());
+baseConfig.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    minimize: true,
+    compress: {
+        warnings: false,
+    },
+    sourceMap: true,
+}));
 
-// Apply Extractor to every css loader
-baseConfig.module.loaders = baseConfig.module.loaders.map((loader) => {
-    if ('test.css'.match(loader.test) ||
-        'test.less'.match(loader.test) ||
-        'test.scss'.match(loader.test) ||
-        'test.sass'.match(loader.test)) {
-        let nakedLoader = loader.loader.split('!').slice(1).join('!');
-        loader.loader = ExtractTextPlugin.extract('style', nakedLoader);
-    }
-    return loader;
-});
+baseConfig.plugins.push(new webpack.DefinePlugin({
+    'process.env': {
+        NODE_ENV: '"production"',
+    },
+}));
+
+baseConfig.plugins.push(new ExtractTextPlugin({
+    filename: '[hash].css',
+    allChunks: true,
+    disable: false,
+}));
 
 module.exports = baseConfig;
