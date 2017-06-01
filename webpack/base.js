@@ -90,6 +90,7 @@ module.exports = {
                         {
                             loader: 'postcss-loader',
                             options: {
+                                sourceMap: true,
                                 plugins: function () {
                                     return [
                                         autoprefixer({
@@ -119,6 +120,7 @@ module.exports = {
                         {
                             loader: 'postcss-loader',
                             options: {
+                                sourceMap: true,
                                 plugins: function () {
                                     return [
                                         autoprefixer({
@@ -157,6 +159,7 @@ module.exports = {
                         {
                             loader: 'postcss-loader',
                             options: {
+                                sourceMap: true,
                                 plugins: function () {
                                     return [
                                         autoprefixer({
