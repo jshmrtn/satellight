@@ -9,7 +9,8 @@ let path = require('path'),
     distPath = path.join(rootPath, 'dist'),
     srcPath = path.join(rootPath, 'src'),
     ExtractTextPlugin = require('extract-text-webpack-plugin'),
-    HtmlWebpackPlugin = require('html-webpack-plugin');
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    webpack = require('webpack');
 
 module.exports = {
     context: rootPath,
@@ -185,6 +186,7 @@ module.exports = {
             },
             {
                 test: /\.(jpe?g|gif|png|ico)$/,
+                exclude: /favicon\//,
                 use: [
                     {
                         loader: 'url-loader',
@@ -233,12 +235,66 @@ module.exports = {
                     },
                 ],
             },
+            {
+                test: /favicon\.ico$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'favicon.ico',
+                        },
+                    },
+                ],
+            },
+            {
+                test: /favicon\/.*\.(jpe?g|gif|png|ico)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[name].[ext]',
+                        },
+                    },
+                ],
+            },
+            {
+                test: /browserconfig\.xml$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'browserconfig.xml',
+                        },
+                    },
+                    {
+                        loader: 'web-app-browserconfig-loader',
+                    },
+                ],
+            },
+            {
+                test: /manifest.json$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: 'manifest.json',
+                        },
+                    },
+                    {
+                        loader: 'web-app-manifest-loader',
+                    },
+                ],
+            },
         ],
     },
     plugins: [
         new HtmlWebpackPlugin({
             inject: 'body',
             template: 'html-loader?interpolate!nunjucks-html-loader!' + path.resolve(srcPath, 'views/index.njk'),
+        }),
+        new webpack.ProvidePlugin({
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
         }),
     ],
 };

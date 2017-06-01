@@ -31,6 +31,13 @@ Run `npm run test`
 
 Run `npm run build:prod`
 
+### Content
+
+#### Favicons / Icons
+
+The structure of the favicon images is built according to [favicon-generator.net](http://www.favicon-generator.org/).
+If you build an icon pack there, just put it into [the favicon folder](src/images/favicon), remove the `browserconfig.xml` and `manifest.json` files that come with it.
+
 ### Contributing
 
 Contributions are welcome from everyone. We will add [contributing guidelines](CONTRIBUTING.md) as soon as possible.

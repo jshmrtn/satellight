@@ -7,6 +7,7 @@ stages:
   - test
   - prepare
   - build
+  - deploy
 
 satellight:install:
   tags:
@@ -31,13 +32,13 @@ satellight:test:
   dependencies:
     - satellight:install
 
-satellight:build:
+satellight:prepare:
   only:
     - /^master$/
     - /^develop$/
   tags:
     - docker
-  stage: build
+  stage: prepare
   image: node:7
   script:
     - npm run build:prod
@@ -49,3 +50,39 @@ satellight:build:
   only:
     - /^master$/
     - /^develop$/
+
+satellight:build:
+  only:
+    - /^master$/
+    - /^develop$/
+  tags:
+    - shell
+  stage: build
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
+    - docker info
+  script:
+    - docker build -t "$CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_BUILD_REF_NAME"
+  dependencies:
+    - satellight:prepare
+
+satellight:deploy:staging:
+  tags:
+    - shell
+  stage: deploy
+  only:
+    - /^develop$/
+  environment: Staging
+  script:
+    - curl --fail -XPOST $WEBHOOK_STAGING_DEPLOY_URL
+
+satellight:deploy:production:
+  tags:
+    - shell
+  stage: deploy
+  only:
+    - /^master$/
+  environment: Production
+  script:
+    - curl --fail -XPOST $WEBHOOK_PRODUCTION_DEPLOY_URL

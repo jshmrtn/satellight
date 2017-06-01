@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.3.0
+
+* Updates dependencies (see 94cfdd93b62318b8383ecc8bb285dc82f6609baf for details)
+* Adds sourceMap setting to postCSS
+* Splits ios-zoom-bugfix into separate file
+* Adds HMR capability for templating
+* Adds Docker configuration and CI stages for Gitlab-Workflow
+* Adds nginx.conf for Docker
+* Adds manifest.json capability
+* Adds browserconfig.xml capability
+* Adds some more meta tags to base layout
+* Adds default favicons for Satellight
+* Added section about favicons to the README
+
 ## 2.2.0
 
 * Adds Nunjucks for templating

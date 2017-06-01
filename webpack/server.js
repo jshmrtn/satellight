@@ -11,6 +11,8 @@ const APP_URL = 'http://' + HOSTNAME + ':3100';
 
 const
     baseConfig = require('./dev'),
+    path = require('path'),
+    rootPath = path.join(__dirname, '../'),
     BrowserSyncPlugin = require('browser-sync-webpack-plugin'),
     webpack = require('webpack'),
     DashboardPlugin = require('webpack-dashboard/plugin');
@@ -18,6 +20,7 @@ const
 baseConfig.entry.main = baseConfig.entry.main.concat([
     'webpack-dev-server/client?http://localhost:3100/',
     'webpack/hot/dev-server',
+    path.join(rootPath, 'src/scripts/hmr.js'),
 ]);
 
 baseConfig.output.filename = '[name].[hash].js';
